@@ -32,6 +32,7 @@ def move():
                     "lat": lat,
                     "long": long
             }
+            requests.post("https://geobus-app-api.herokuapp.com/vehicles/update/position/1", data = dictionary)
             time.sleep(500)
         while(lat < 36.05666733331742):
             lat = movenorth(lat, long)
@@ -40,6 +41,7 @@ def move():
                     "lat": lat,
                     "long": long
             }
+            requests.post("https://geobus-app-api.herokuapp.com/vehicles/update/position/1", data = dictionary)
             time.sleep(500)
         while(long > -94.18504237244547):
             long = movewest(lat, long)
@@ -48,6 +50,7 @@ def move():
                     "lat": lat,
                     "long": long
             }
+            requests.post("https://geobus-app-api.herokuapp.com/vehicles/update/position/1", data = dictionary)
             time.sleep(500)
         while(lat > 36.04875525081654):
             lat = movesouth(lat, long)
@@ -55,6 +58,7 @@ def move():
                     "lat": lat,
                     "long": long
             }
+            requests.post("https://geobus-app-api.herokuapp.com/vehicles/update/position/1", data = dictionary)
             time.sleep(500)
 
 def main():
