@@ -31,25 +31,30 @@ def move():
             long = moveeast(lat, long)
             ## WRITE LONG TO DB HERE
             location["long"] = long
+            print('1')
             print(requests.post("https://geobus-app-api.herokuapp.com/vehicles/update/position/1", json = location))
-            time.sleep(500)
+            time.sleep(1)
+            print(location)
         while(lat < 36.05666733331742):
             lat = movenorth(lat, long)
             ## WRITE LAT TO DB HERE
             location["lat"] = lat
+            print('2')
             print(requests.post("https://geobus-app-api.herokuapp.com/vehicles/update/position/1", json = location))
-            time.sleep(500)
+            time.sleep(1)
         while(long > -94.18504237244547):
             long = movewest(lat, long)
             ## WRITE LONG TO DB HERE
             location["long"] = long
+            print('3')
             print(requests.post("https://geobus-app-api.herokuapp.com/vehicles/update/position/1", json = location))
-            time.sleep(500)
+            time.sleep(1)
         while(lat > 36.04875525081654):
             lat = movesouth(lat, long)
             location["lat"] = lat
+            print('4')
             print(requests.post("https://geobus-app-api.herokuapp.com/vehicles/update/position/1", json = location))
-            time.sleep(500)
+            time.sleep(1)
 
 def main():
     move()
