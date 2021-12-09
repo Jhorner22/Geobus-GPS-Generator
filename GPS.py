@@ -4,19 +4,19 @@ import requests
 
 
 def moveeast(lat, long):
-    long += .0009
+    long += .0001
     return long
 
 def movenorth(lat, long):
-    lat += .0009
+    lat += .0001
     return lat
 
 def movewest(lat, long):
-    long -= .0009
+    long -= .0001
     return long
 
 def movesouth(lat, long):
-    lat -= .0009
+    lat -= .0001
     return lat
 
 def move():
@@ -31,30 +31,34 @@ def move():
             long = moveeast(lat, long)
             ## WRITE LONG TO DB HERE
             location["long"] = long
-            print('1')
+            print("East")
+            print("lat: ", lat, "long: ", long)
             print(requests.post("https://geobus-app-api.herokuapp.com/vehicles/update/position/1", json = location))
-            time.sleep(1)
+            time.sleep(.5)
             print(location)
         while(lat < 36.05666733331742):
             lat = movenorth(lat, long)
             ## WRITE LAT TO DB HERE
             location["lat"] = lat
-            print('2')
+            print("North")
+            print("lat:", lat, "long: ", long)
             print(requests.post("https://geobus-app-api.herokuapp.com/vehicles/update/position/1", json = location))
-            time.sleep(1)
+            time.sleep(.5)
         while(long > -94.18504237244547):
             long = movewest(lat, long)
             ## WRITE LONG TO DB HERE
             location["long"] = long
-            print('3')
+            print("West")
+            print("lat: ", lat, "long: ", long)
             print(requests.post("https://geobus-app-api.herokuapp.com/vehicles/update/position/1", json = location))
-            time.sleep(1)
+            time.sleep(5)
         while(lat > 36.04875525081654):
             lat = movesouth(lat, long)
             location["lat"] = lat
-            print('4')
+            print("South")
+            print("lat: ", lat, "long: ", long)
             print(requests.post("https://geobus-app-api.herokuapp.com/vehicles/update/position/1", json = location))
-            time.sleep(1)
+            time.sleep(.5)
 
 def main():
     move()
